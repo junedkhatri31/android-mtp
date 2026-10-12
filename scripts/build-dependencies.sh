@@ -7,11 +7,6 @@ if [[ "$(uname -m)" != "arm64" ]]; then
     echo "This project targets Apple Silicon. Build it on an arm64 Mac." >&2
     exit 1
 fi
-if [[ -f "$PREFIX/.versions" ]] && [[ "$(cat "$PREFIX/.versions")" == "libusb-1.0.30 libmtp-1.1.23 macOS-14" ]]; then
-    echo "USB dependencies are already built."
-    exit 0
-fi
-command -v pkg-config >/dev/null || { echo "Install pkg-config first: brew install pkg-config" >&2; exit 1; }
 mkdir -p "$PREFIX" "$WORK"
 
 download() {
@@ -24,6 +19,12 @@ download "https://github.com/libusb/libusb/releases/download/v1.0.30/libusb-1.0.
     "$WORK/libusb.tar.bz2" "fea36f34f9156400209595e300840767ab1a385ede1dc7ee893015aea9c6dbaf"
 download "https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.23/libmtp-1.1.23.tar.gz" \
     "$WORK/libmtp.tar.gz" "74a2b6e8cb4a0304e95b995496ea3ac644c29371649b892b856e22f12a0bdeed"
+
+if [[ -f "$PREFIX/.versions" ]] && [[ "$(cat "$PREFIX/.versions")" == "libusb-1.0.30 libmtp-1.1.23 macOS-14" ]]; then
+    echo "USB dependencies are already built; release source archives are verified."
+    exit 0
+fi
+command -v pkg-config >/dev/null || { echo "Install pkg-config first: brew install pkg-config" >&2; exit 1; }
 
 export MACOSX_DEPLOYMENT_TARGET=14.0
 export SDKROOT="$(xcrun --sdk macosx --show-sdk-path)"

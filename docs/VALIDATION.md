@@ -18,3 +18,11 @@ USB removal during a transfer, rename/delete on a phone, multiple-device selecti
 and runtime compatibility on macOS 14 need physical hardware / OS testing.
 The app is ad-hoc signed for local use; Developer ID signing and notarization
 have not been performed.
+
+## Version 1.0.1 installation packaging
+
+- The compressed DMG passes `hdiutil verify` and mounts read-only.
+- Its app bundle reports version 1.0.1 and passes strict recursive signature verification.
+- The image contains the arm64 app, an Applications shortcut, and the installation / first-launch guide.
+- The ZIP archive passes integrity checks. SHA-256 checksums are generated for all release artifacts.
+- First-launch instructions use Apple's per-app Privacy & Security flow; this release has not been notarized.

@@ -64,6 +64,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 struct SettingsView: View {
     @AppStorage("appearance") private var appearance = "system"
+    private var appVersion: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Development"
+    }
     var body: some View {
         Form {
             Picker("Appearance", selection: $appearance) {
@@ -75,7 +78,7 @@ struct SettingsView: View {
                 .font(.callout).foregroundStyle(.secondary)
             Text("Existing files are never overwritten. Folder transfers include their contents. Symbolic links are not followed.")
                 .font(.callout).foregroundStyle(.secondary)
-            LabeledContent("Version", value: "1.0.0 · Apple Silicon")
+            LabeledContent("Version", value: "\(appVersion) · Apple Silicon")
         }
         .formStyle(.grouped)
         .frame(width: 440, height: 280)

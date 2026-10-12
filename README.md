@@ -5,13 +5,27 @@ and transfers files over USB using [libmtp](https://github.com/libmtp/libmtp)
 and [libusb](https://github.com/libusb/libusb). No web view, ADB, Android companion
 app, or network service is involved.
 
+[**Download for Apple Silicon (.dmg)**](https://github.com/junedkhatri31/android-mtp/releases/latest/download/AndroidMTP-arm64.dmg)
+· [Installation guide](docs/INSTALL.md)
+· [Release notes](https://github.com/junedkhatri31/android-mtp/releases/latest)
+
 ![Native browser in read-only preview mode](docs/browser-preview.png)
 
-## Run
+## Install and connect
 
-[Download the Apple Silicon preview release](https://github.com/junedkhatri31/android-mtp/releases/tag/v1.0.0),
-extract `AndroidMTP-arm64.zip`, and open **Android MTP.app**. If you built from
-source, open `dist/Android MTP.app` instead. Connect your Android device with a USB **data** cable,
+1. Download **AndroidMTP-arm64.dmg** using the link above and open it.
+2. Drag **Android MTP.app** into **Applications**, then eject the disk image.
+3. Launch **Android MTP** from Applications.
+
+If macOS blocks the first launch, try opening the app once, then use
+**System Settings → Privacy & Security → Security → Open Anyway** and confirm
+**Open**. See the [first-launch guide](docs/INSTALL.md#allow-the-first-launch-in-macos)
+and [Apple's instructions](https://support.apple.com/en-us/102445).
+
+The ZIP download is also available: extract it and move the app to Applications.
+If you built from source, open `dist/Android MTP.app` instead.
+
+Connect your Android device with a USB **data** cable,
 unlock it, and choose **File transfer / Android Auto** in the phone's USB notification.
 The app automatically opens a single detected device; with multiple devices,
 choose one from the connection screen. Click Refresh or press **⌘R** to scan again.
@@ -58,7 +72,9 @@ open "dist/Android MTP.app"
 The script downloads **checksum-verified, pinned** source releases of libusb 1.0.30
 and libmtp 1.1.23, builds them for arm64 / macOS 14, builds the Swift executable,
 generates an app icon, bundles and relocates all non-system dylibs, includes their
-licenses, and ad-hoc signs the app. It also produces `dist/AndroidMTP-arm64.zip`.
+licenses, and ad-hoc signs the app. It produces `dist/AndroidMTP-arm64.dmg`
+with an Applications shortcut and installation guide, plus
+`dist/AndroidMTP-arm64.zip` and SHA-256 checksums for the release assets.
 The first dependency build needs an internet connection. Later builds reuse
 `.dependencies/`; remove that directory to rebuild the USB libraries.
 
@@ -137,4 +153,4 @@ transfer engine. `Sources/AndroidMTP` contains the SwiftUI browser and queue.
 Application code: [MIT](LICENSE). Bundled USB libraries:
 [LGPL-2.1-or-later](Licenses/THIRD-PARTY.md), with complete license texts included
 in the app's `Contents/Resources/Licenses` directory. The matching unmodified
-library source archives are also attached to the preview release.
+library source archives are also attached to each release.

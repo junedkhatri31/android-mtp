@@ -14,7 +14,7 @@ You may replace these libraries with compatible versions and re-sign the local
 bundle using `codesign --force --deep --sign - "Android MTP.app"`.
 
 The matching unmodified libmtp and libusb source archives are also distributed
-alongside the app at https://github.com/junedkhatri31/android-mtp/releases/tag/v1.0.0.
+alongside the app at https://github.com/junedkhatri31/android-mtp/releases.
 
 This application's source is licensed under MIT. It imposes no restriction on
 reverse engineering for debugging modifications to these LGPL libraries.
