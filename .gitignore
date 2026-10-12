@@ -1,0 +1,7 @@
+.build/
+.swiftpm/
+dist/
+.dependencies/
+.dependency-build/
+.dependency-build.log
+.DS_Store
